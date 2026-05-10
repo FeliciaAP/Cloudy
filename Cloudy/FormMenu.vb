@@ -1,8 +1,6 @@
 ﻿Imports System.IO
 
 Public Class FormMenu
-    'Public ItemList As List(Of PnItem) = New List(Of PnItem)
-
     Public ItemOpenBefore As PnItem
 
     Private DirectoryPath_ As String = Path.Combine(Application.StartupPath, "CloudyServer")
@@ -131,9 +129,9 @@ Public Class FormMenu
     End Sub
 
     Public Sub RefreshList()
-        Debug.WriteLine("Clipboard has file drop list: " & Clipboard.ContainsFileDropList().ToString())
+        'Debug.WriteLine("Clipboard has file drop list: " & Clipboard.ContainsFileDropList().ToString())
         'ItemList = pnMain.Controls.OfType(Of PnItem)().ToList()
-        'chkbxIsSelectable.Checked = False
+        chkbxIsSelectable.Checked = False
 
         pnMain.Controls.Clear()
 
@@ -415,6 +413,9 @@ Public Class FormMenu
 
         ElseIf (e.Control And e.KeyCode = Keys.C) Then
             pbCopy_Click(Nothing, Nothing)
+
+        ElseIf (e.KeyCode = Keys.Delete) Then
+            pbDelete_Click(Nothing, Nothing)
         End If
     End Sub
 
