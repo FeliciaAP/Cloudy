@@ -224,7 +224,7 @@ Public Class FormMenu
                 targetFolder = newPath
                 My.Computer.FileSystem.CopyDirectory(sourceFolder.FullName, targetFolder, True)
 
-            Else
+            ElseIf (File.Exists(location)) Then
                 ' File
                 Dim filePath As String
                 Dim fileExtension As String
@@ -306,6 +306,11 @@ Public Class FormMenu
             fileList = ClipboardValue
 
             For Each path As String In fileList
+                If (path = DirectoryPath) Then
+                    MessageBox.Show("Tidak bisa copy directory yang sama ke dalam directorynya.")
+                    Continue For
+                End If
+
                 Try
                     addNewItems(New String() {path})
                 Catch ex As Exception

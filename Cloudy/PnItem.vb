@@ -187,18 +187,16 @@ Public Class PnItem
     End Sub
 
     Private Sub btnCopy_Click(sender As Object, e As EventArgs) Handles btnCopy.Click
-        If File.Exists(ItemLocation) OrElse Directory.Exists(ItemLocation) Then
+        If File.Exists(ItemLocation) Or Directory.Exists(ItemLocation) Then
             Dim fileList As New Specialized.StringCollection()
             fileList.Add(ItemLocation)
 
             Dim parent As FormMenu
             parent = Me.FindForm
             parent.ClipboardValue = fileList
+            Clipboard.SetFileDropList(fileList)
 
-            Dim frm As FormMenu
-            frm = Me.FindForm()
-
-            frm.Toast("Successfully copied file.")
+            parent.Toast("Successfully copied file.")
         End If
     End Sub
 
