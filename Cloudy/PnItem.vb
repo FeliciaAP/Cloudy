@@ -5,6 +5,8 @@ Public Class PnItem
 
     Public ItemList As List(Of PnItem) = New List(Of PnItem)
 
+
+
     Private IsFolder_ As Boolean = False
 
     Public Property IsFolder As Boolean
@@ -166,7 +168,12 @@ Public Class PnItem
 
         frm.DirectoryPath = ItemLocation
 
+        Dim parent As FormMenu
+        parent = Me.FindForm()
+        frm.ClipboardValue = parent.ClipboardValue
+
         frm.ShowDialog()
+
     End Sub
 
     Private Sub fileItem_Click(sender As Object, e As EventArgs)
@@ -181,7 +188,7 @@ Public Class PnItem
     End Sub
 
     Private Sub btnCopy_Click(sender As Object, e As EventArgs) Handles btnCopy.Click
-        If File.Exists(ItemLocation) Then
+        If File.Exists(ItemLocation) OrElse Directory.Exists(ItemLocation) Then
             Dim fileList As New Specialized.StringCollection()
             fileList.Add(ItemLocation)
 
@@ -259,13 +266,25 @@ Public Class PnItem
         If (frm.ShowDialog() = DialogResult.OK) Then
             If (IsFolder) Then
                 ' Rename folder
-                My.Computer.FileSystem.RenameDirectory(ItemLocation, frm.InputText)
+                If (Directory.Exists(Path.Combine(FolderItem.Parent.FullName, frm.InputText))) Then
+                    MessageBox.Show($"Folder dengan nama {frm.InputText} sudah ada, tolong gunakan nama lain")
+                Else
+                    My.Computer.FileSystem.RenameDirectory(ItemLocation, frm.InputText)
+                    refreshForm()
+                End If
+
             Else
                 ' Rename file
-                My.Computer.FileSystem.RenameFile(ItemLocation, frm.InputText + FileItem.Extension)
+                If (File.Exists(Path.Combine(FileItem.Directory.FullName, frm.InputText + FileItem.Extension))) Then
+                    MessageBox.Show($"File dengan nama {frm.InputText} sudah ada, tolong gunakan nama lain")
+                Else
+                    My.Computer.FileSystem.RenameFile(ItemLocation, frm.InputText + FileItem.Extension)
+                    refreshForm()
+                End If
+
             End If
 
-            refreshForm()
+
         End If
 
 
@@ -334,4 +353,6 @@ Public Class PnItem
         End Try
 
     End Sub
+
+
 End Class

@@ -27,6 +27,23 @@ Public Class FormMenu
         End Get
     End Property
 
+    Private ClipboardValue_ As Specialized.StringCollection = New Specialized.StringCollection()
+
+    Public Property ClipboardValue As Specialized.StringCollection
+        Set(value As Specialized.StringCollection)
+            ClipboardValue_ = value
+
+            Try
+                Clipboard.SetFileDropList(ClipboardValue_)
+            Catch ex As Exception
+
+            End Try
+        End Set
+        Get
+            Return ClipboardValue_
+        End Get
+    End Property
+
     Private IsFolder_ As Boolean = False
 
     Public Property IsFolder As Boolean
@@ -114,8 +131,9 @@ Public Class FormMenu
     End Sub
 
     Public Sub RefreshList()
+        Debug.WriteLine("Clipboard has file drop list: " & Clipboard.ContainsFileDropList().ToString())
         'ItemList = pnMain.Controls.OfType(Of PnItem)().ToList()
-        chkbxIsSelectable.Checked = False
+        'chkbxIsSelectable.Checked = False
 
         pnMain.Controls.Clear()
 
@@ -256,9 +274,6 @@ Public Class FormMenu
     End Sub
 
     Private Sub FormMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'For Each item As PnItem In ItemList
-        'pnMain.Controls.Add(item)
-        'Next
         RefreshList()
     End Sub
 
@@ -279,12 +294,13 @@ Public Class FormMenu
     End Sub
 
     Private Sub pbPaste_Click(sender As Object, e As EventArgs) Handles pbPaste.Click
+
         If (Clipboard.ContainsFileDropList()) Then
             Dim isError As Boolean
             isError = False
 
             Dim fileList As New Specialized.StringCollection()
-            fileList = Clipboard.GetFileDropList()
+            fileList = ClipboardValue
 
             For Each path As String In fileList
                 Try
@@ -308,6 +324,7 @@ Public Class FormMenu
     End Sub
 
     Private Sub pbCopy_Click(sender As Object, e As EventArgs) Handles pbCopy.Click
+
         Dim itemList As New Specialized.StringCollection()
 
         If (chkbxIsSelectable.Checked = True) Then
@@ -325,9 +342,17 @@ Public Class FormMenu
             itemList.Add(PrevClickedItem.ItemLocation)
         End If
 
-            Clipboard.SetFileDropList(itemList)
+        If (itemList.Count = 0) Then
+            Return
+        End If
+
+        Clipboard.SetFileDropList(itemList)
+
+        ClipboardValue = Clipboard.GetFileDropList()
 
         Toast("Successfully copied file(s)")
+
+        'Toast("Successfully copied file(s)")
     End Sub
 
     Private Sub chkbxIsSelectable_CheckedChanged(sender As Object, e As EventArgs) Handles chkbxIsSelectable.CheckedChanged
@@ -386,5 +411,9 @@ Public Class FormMenu
         ElseIf (e.Control And e.KeyCode = Keys.C) Then
             pbCopy_Click(Nothing, Nothing)
         End If
+    End Sub
+
+    Public Sub SetClipboardValues(clipboardList As Specialized.StringCollection)
+        Clipboard.SetFileDropList(clipboardList)
     End Sub
 End Class
