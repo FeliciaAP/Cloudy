@@ -191,7 +191,9 @@ Public Class PnItem
             Dim fileList As New Specialized.StringCollection()
             fileList.Add(ItemLocation)
 
-            Clipboard.SetFileDropList(fileList)
+            Dim parent As FormMenu
+            parent = Me.FindForm
+            parent.ClipboardValue = fileList
 
             Dim frm As FormMenu
             frm = Me.FindForm()
