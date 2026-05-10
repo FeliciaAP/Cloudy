@@ -202,16 +202,19 @@ Public Class FormMenu
 
                 ' Cek apabila item sudah exist
                 If (Directory.Exists(newPath)) Then
+                    Dim folderCount As Integer
                     Dim isNameFound As Boolean
+                    folderCount = 1
                     isNameFound = True
 
-                    While (isNameFound)
-                        folderPath = newPath + "_New"
-                        newPath = System.IO.Path.Combine(DirectoryPath, folderPath)
+                    While isNameFound
+                        folderPath = $"{folderInfo.Name} ({folderCount})"
+                        newPath = Path.Combine(DirectoryPath, folderPath)
 
-                        If (Not Directory.Exists(newPath)) Then
+                        If Not Directory.Exists(newPath) Then
                             isNameFound = False
                         End If
+                        folderCount += 1
                     End While
                 End If
 
@@ -240,17 +243,19 @@ Public Class FormMenu
 
                 ' Cek apabila item sudah exist
                 If (File.Exists(newPath)) Then
+                    Dim fileCount As Integer
                     Dim isNameFound As Boolean
+                    fileCount = 1
                     isNameFound = True
 
-                    While (isNameFound)
-                        fileNameWithoutExtension = fileNameWithoutExtension + "_New"
-                        filePath = fileNameWithoutExtension + fileExtension
-                        newPath = System.IO.Path.Combine(DirectoryPath, filePath)
+                    While isNameFound
+                        filePath = $"{fileNameWithoutExtension} ({fileCount}){fileExtension}"
+                        newPath = Path.Combine(DirectoryPath, filePath)
 
-                        If (Not File.Exists(newPath)) Then
+                        If Not File.Exists(newPath) Then
                             isNameFound = False
                         End If
+                        fileCount += 1
                     End While
                 End If
 

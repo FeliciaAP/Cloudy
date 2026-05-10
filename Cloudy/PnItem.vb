@@ -6,7 +6,6 @@ Public Class PnItem
     Public ItemList As List(Of PnItem) = New List(Of PnItem)
 
 
-
     Private IsFolder_ As Boolean = False
 
     Public Property IsFolder As Boolean
@@ -331,7 +330,7 @@ Public Class PnItem
         parent = Me.FindForm()
 
         Try
-            If (parent.PrevClickedItem IsNot Me) Then
+            If (parent IsNot Nothing AndAlso parent.PrevClickedItem IsNot Nothing AndAlso parent.PrevClickedItem IsNot Me) Then
                 Me.BackColor = Color.DarkSlateGray
             End If
         Catch ex As Exception
@@ -345,7 +344,7 @@ Public Class PnItem
         parent = Me.FindForm()
 
         Try
-            If (parent.PrevClickedItem IsNot Me) Then
+            If (parent IsNot Nothing AndAlso parent.PrevClickedItem IsNot Nothing AndAlso parent.PrevClickedItem IsNot Me) Then
                 Me.BackColor = Color.FromArgb(64, 64, 64)
             End If
         Catch ex As Exception

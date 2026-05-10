@@ -58,4 +58,14 @@
             Close()
         End If
     End Sub
+
+    Private Sub FormInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txbInput.Focus()
+    End Sub
+
+    Private Sub txbInput_KeyDown(sender As Object, e As KeyEventArgs) Handles txbInput.KeyDown
+        If (e.KeyCode = Keys.Enter) Then
+            btnInput_Click(Nothing, Nothing)
+        End If
+    End Sub
 End Class
