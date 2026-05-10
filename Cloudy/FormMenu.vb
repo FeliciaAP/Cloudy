@@ -415,7 +415,9 @@ Public Class FormMenu
             pbCopy_Click(Nothing, Nothing)
 
         ElseIf (e.KeyCode = Keys.Delete) Then
-            pbDelete_Click(Nothing, Nothing)
+            If (chkbxIsSelectable.Checked) Then
+                pbDelete_Click(Nothing, Nothing)
+            End If
         End If
     End Sub
 
