@@ -32,6 +32,16 @@ Cloudy
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:Cloudy.My.Resources.Resources.Copy">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Cloudy.My.Resources.Resources.Delete">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Cloudy.My.Resources.Resources.Folder">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -43,6 +53,16 @@ Cloudy
 </summary>
 </member>
 <member name="P:Cloudy.My.Resources.Resources.More">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Cloudy.My.Resources.Resources.Paste">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Cloudy.My.Resources.Resources.Refresh">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

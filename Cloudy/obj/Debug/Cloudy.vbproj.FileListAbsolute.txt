@@ -9,4 +9,6 @@ D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\De
 D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\Debug\Cloudy.exe
 D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\Debug\Cloudy.xml
 D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\Debug\Cloudy.pdb
-D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\Debug\Cloudy.FormAddFolder.resources
+D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\Debug\Cloudy.vbprojResolveAssemblyReference.cache
+D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\Debug\Cloudy.FormLoading.resources
+D:\College\Semester 6\Pemrograman Visual Basic.NET\Kelompok\Cloudy\Cloudy\obj\Debug\Cloudy.FormInput.resources
